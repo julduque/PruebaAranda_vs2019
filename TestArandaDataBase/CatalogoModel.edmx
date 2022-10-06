@@ -1,0 +1,212 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="PruebaArandaDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__RefactorLog">
+          <Key>
+            <PropertyRef Name="OperationKey" />
+          </Key>
+          <Property Name="OperationKey" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Producto">
+          <Key>
+            <PropertyRef Name="IdProducto" />
+          </Key>
+          <Property Name="IdProducto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NombreProducto" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Categoria" Type="int" Nullable="false" />
+          <Property Name="ImagenProducto" Type="varbinary(max)" />
+        </EntityType>
+        <Function Name="ProductoDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idProd" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ProductoEdit" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idProd" Type="int" Mode="In" />
+          <Parameter Name="nombreP" Type="varchar" Mode="In" />
+          <Parameter Name="descrip" Type="varchar" Mode="In" />
+          <Parameter Name="cat" Type="int" Mode="In" />
+          <Parameter Name="imagen" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="ProductoGet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nombreP" Type="varchar" Mode="In" />
+          <Parameter Name="descrip" Type="varchar" Mode="In" />
+          <Parameter Name="cat" Type="int" Mode="In" />
+          <Parameter Name="pagesize" Type="int" Mode="In" />
+          <Parameter Name="pagenum" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ProductoInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nombreP" Type="varchar" Mode="In" />
+          <Parameter Name="descrip" Type="varchar" Mode="In" />
+          <Parameter Name="cat" Type="int" Mode="In" />
+          <Parameter Name="imagen" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <EntityContainer Name="PruebaArandaDBModelStoreContainer">
+          <EntitySet Name="__RefactorLog" EntityType="Self.__RefactorLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Producto" EntityType="Self.Producto" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PruebaArandaDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="C__RefactorLog">
+          <Key>
+            <PropertyRef Name="OperationKey" />
+          </Key>
+          <Property Name="OperationKey" Type="Guid" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Producto">
+          <Key>
+            <PropertyRef Name="IdProducto" />
+          </Key>
+          <Property Name="IdProducto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NombreProducto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Categoria" Type="Int32" Nullable="false" />
+          <Property Name="ImagenProducto" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityContainer Name="PruebaArandaDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C__RefactorLog" EntityType="Self.C__RefactorLog" />
+          <EntitySet Name="Producto" EntityType="Self.Producto" />
+          <FunctionImport Name="ProductoDelete">
+          <Parameter Name="idProd" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ProductoEdit">
+            <Parameter Name="idProd" Mode="In" Type="Int32" />
+            <Parameter Name="nombreP" Mode="In" Type="String" />
+            <Parameter Name="descrip" Mode="In" Type="String" />
+            <Parameter Name="cat" Mode="In" Type="Int32" />
+            <Parameter Name="imagen" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="ProductoInsert">
+            <Parameter Name="nombreP" Mode="In" Type="String" />
+            <Parameter Name="descrip" Mode="In" Type="String" />
+            <Parameter Name="cat" Mode="In" Type="Int32" />
+            <Parameter Name="imagen" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="ProductoGet" ReturnType="Collection(PruebaArandaDBModel.ProductoGet_Result)">
+            <Parameter Name="nombreP" Mode="In" Type="String" />
+            <Parameter Name="descrip" Mode="In" Type="String" />
+            <Parameter Name="cat" Mode="In" Type="Int32" />
+            <Parameter Name="pagesize" Mode="In" Type="Int32" />
+            <Parameter Name="pagenum" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ProductoConsulta" ReturnType="Collection(PruebaArandaDBModel.ProductoGet_Result)">
+            <Parameter Name="nombreP" Mode="In" Type="String" />
+            <Parameter Name="descrip" Mode="In" Type="String" />
+            <Parameter Name="cat" Mode="In" Type="Int32" />
+            <Parameter Name="pagesize" Mode="In" Type="Int32" />
+            <Parameter Name="pagenum" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ProductoGetByIdProduct">
+            <Parameter Name="nombreP" Mode="In" Type="String" />
+            <Parameter Name="descrip" Mode="In" Type="String" />
+            <Parameter Name="cat" Mode="In" Type="Int32" />
+            <Parameter Name="pagesize" Mode="In" Type="Int32" />
+            <Parameter Name="pagenum" Mode="In" Type="Int32" />
+          </FunctionImport>
+          </EntityContainer>
+        <ComplexType Name="ProductoGet_Result">
+          <Property Type="Int32" Name="IdProducto" Nullable="false" />
+          <Property Type="String" Name="NombreProducto" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="100" />
+          <Property Type="Int32" Name="Categoria" Nullable="false" />
+          <Property Type="Binary" Name="ImagenProducto" Nullable="true" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PruebaArandaDBModelStoreContainer" CdmEntityContainer="PruebaArandaDBEntities">
+          <EntitySetMapping Name="C__RefactorLog">
+            <EntityTypeMapping TypeName="PruebaArandaDBModel.C__RefactorLog">
+              <MappingFragment StoreEntitySet="__RefactorLog">
+                <ScalarProperty Name="OperationKey" ColumnName="OperationKey" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Producto">
+            <EntityTypeMapping TypeName="PruebaArandaDBModel.Producto">
+              <ModificationFunctionMapping>
+                <InsertFunction FunctionName="PruebaArandaDBModel.Store.ProductoInsert" >
+                  <ScalarProperty Name="ImagenProducto" ParameterName="imagen" />
+                  <ScalarProperty Name="Categoria" ParameterName="cat" />
+                  <ScalarProperty Name="Descripcion" ParameterName="descrip" />
+                  <ScalarProperty Name="NombreProducto" ParameterName="nombreP" />
+                </InsertFunction>
+                <UpdateFunction FunctionName="PruebaArandaDBModel.Store.ProductoEdit" >
+                <ScalarProperty Name="ImagenProducto" ParameterName="imagen" Version="Current" />
+                  <ScalarProperty Name="Categoria" ParameterName="cat" Version="Current" />
+                  <ScalarProperty Name="Descripcion" ParameterName="descrip" Version="Current" />
+                  <ScalarProperty Name="NombreProducto" ParameterName="nombreP" Version="Current" />
+                  <ScalarProperty Name="IdProducto" ParameterName="idProd" Version="Current" />
+                </UpdateFunction>
+                <DeleteFunction FunctionName="PruebaArandaDBModel.Store.ProductoDelete" >
+                  <ScalarProperty Name="IdProducto" ParameterName="idProd" />
+                </DeleteFunction>
+              </ModificationFunctionMapping>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="IsTypeOf(PruebaArandaDBModel.Producto)">
+              <MappingFragment StoreEntitySet="Producto">
+                <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+                <ScalarProperty Name="ImagenProducto" ColumnName="ImagenProducto" />
+                <ScalarProperty Name="Categoria" ColumnName="Categoria" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="NombreProducto" ColumnName="NombreProducto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="ProductoDelete" FunctionName="PruebaArandaDBModel.Store.ProductoDelete" />
+          <FunctionImportMapping FunctionImportName="ProductoEdit" FunctionName="PruebaArandaDBModel.Store.ProductoEdit" />
+          <FunctionImportMapping FunctionImportName="ProductoInsert" FunctionName="PruebaArandaDBModel.Store.ProductoInsert" />
+          <FunctionImportMapping FunctionImportName="ProductoGet" FunctionName="PruebaArandaDBModel.Store.ProductoGet">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PruebaArandaDBModel.ProductoGet_Result">
+                <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+                <ScalarProperty Name="NombreProducto" ColumnName="NombreProducto" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Categoria" ColumnName="Categoria" />
+                <ScalarProperty Name="ImagenProducto" ColumnName="ImagenProducto" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ProductoConsulta" FunctionName="PruebaArandaDBModel.Store.ProductoGet">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PruebaArandaDBModel.ProductoGet_Result">
+                <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+                <ScalarProperty Name="NombreProducto" ColumnName="NombreProducto" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Categoria" ColumnName="Categoria" />
+                <ScalarProperty Name="ImagenProducto" ColumnName="ImagenProducto" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ProductoGetByIdProduct" FunctionName="PruebaArandaDBModel.Store.ProductoGet" />
+          </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
